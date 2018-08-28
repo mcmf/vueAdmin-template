@@ -30,6 +30,11 @@
           class="nest-menu"/>
 
         <router-link v-else :to="resolvePath(child.path)" :key="child.name">
+          <a v-if="isExternalLink(child.path)" :href="child.path" target="blank" :key="child.path">
+            <el-menu-item :index="resolvePath(child.path)" :class="{'submenu-title-noDropdown':!isNest}">
+              <item v-if="child.meta" :icon="child.meta.icon" :title="child.meta.title" />
+            </el-menu-item>
+          </a>
           <el-menu-item :index="resolvePath(child.path)">
             <item v-if="child.meta" :icon="child.meta.icon" :title="child.meta.title" />
           </el-menu-item>
